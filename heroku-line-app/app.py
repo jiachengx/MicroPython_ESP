@@ -35,7 +35,7 @@ def line():
         print('line_notify() error: ', str(ex))
         return 'ERROR'
     
-    return 'OK'
+    return 'Done'
 
 @app.route('/line2', methods=['GET', 'POST'])
 def line2():
@@ -70,7 +70,7 @@ def line2():
         print('line_notify() error: ', str(ex))
         return 'ERROR: '+str(ex)
     
-    return 'OK'
+    return 'Done'
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
