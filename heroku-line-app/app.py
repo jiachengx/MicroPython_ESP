@@ -8,15 +8,11 @@ import pprint
 import json
 import requests
 
-#------
-#   line nofity功能 web-api
-#------
-
 app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return "OK"
+    return "D"
 
 
 ###############
