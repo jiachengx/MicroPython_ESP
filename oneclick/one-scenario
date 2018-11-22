@@ -1,0 +1,58 @@
+Script started on 2018-11-22 15:45:36+0800
+]0;root@ctt: /opt/micropython/bin/oneclickroot@ctt:/opt/micropython/bin/oneclick# ./espflash-one S0 0
+./espflash-one ver. 1.00.18.301
+[info] Get the ttyUSB0 info
+MAC address: 80:7D:3A:4D:5D:C7
+S0: 80:7D:3A:4D:5D:C7
+[info] Erase the ttyUSB{port}
+esptool.py v2.4.1
+Serial port /dev/ttyUSB0
+Connecting....
+Detecting chip type... ESP8266
+Chip is ESP8266EX
+Features: WiFi
+MAC: 80:7d:3a:4d:5d:c7
+Uploading stub...
+Running stub...
+Stub running...
+Erasing flash (this may take a while)...
+Chip erase completed successfully in 2.6s
+Hard resetting via RTS pin...
+[info] Download the MicroPython image to ESP-01S
+esptool.py v2.4.1
+Serial port /dev/ttyUSB0
+Connecting....
+Detecting chip type... ESP8266
+Chip is ESP8266EX
+Features: WiFi
+MAC: 80:7d:3a:4d:5d:c7
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Auto-detected Flash size: 1MB
+Flash params set to 0x0020
+Compressed 604872 bytes to 394893...
+Writing at 0x00000000... (4 %)Writing at 0x00004000... (8 %)Writing at 0x00008000... (12 %)Writing at 0x0000c000... (16 %)Writing at 0x00010000... (20 %)Writing at 0x00014000... (24 %)Writing at 0x00018000... (28 %)Writing at 0x0001c000... (32 %)Writing at 0x00020000... (36 %)Writing at 0x00024000... (40 %)Writing at 0x00028000... (44 %)Writing at 0x0002c000... (48 %)Writing at 0x00030000... (52 %)Writing at 0x00034000... (56 %)Writing at 0x00038000... (60 %)Writing at 0x0003c000... (64 %)Writing at 0x00040000... (68 %)Writing at 0x00044000... (72 %)Writing at 0x00048000... (76 %)Writing at 0x0004c000... (80 %)Writing at 0x00050000... (84 %)Writing at 0x00054000... (88 %)Writing at 0x00058000... (92 %)Writing at 0x0005c000... (96 %)Writing at 0x00060000... (100 %)Wrote 604872 bytes (394893 compressed) at 0x00000000 in 9.4 seconds (effective 512.3 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+Finish to download the MicroPython Image
+Configure the MicroPython
+
+Finish to configure the MicroPython
+
+[info] Upload the maint.py and user config to ttyUSB0
+Done
+]0;root@ctt: /opt/micropython/bin/oneclickroot@ctt:/opt/micropython/bin/oneclick# ls
+esp8266-20180511-v1.9.4.bin  main.py       set.py     wifi.cfg
+[0m[01;32mespflash-one[0m                 one-scenario  t_macaddr
+]0;root@ctt: /opt/micropython/bin/oneclickroot@ctt:/opt/micropython/bin/oneclick# ji3[K[K[Kexit
+root@ctt:/opt/micropython/bin/oneclick# iw dev wlp3s0 scan |grep -i c7
+BSS 82:7d:3a:4d:5d:c7(on wlp3s0)
+	SSID: MicroPython-4d5dc7
+
+Script done on 2018-11-22 15:46:19+0800

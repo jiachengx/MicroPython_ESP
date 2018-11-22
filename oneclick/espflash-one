@@ -1,0 +1,40 @@
+#!/bin/bash
+# Flash the MicroPython firmware and then call set.py and then upload the file
+# Aurhor: Stephen Hsu
+
+if [ -z $1 ] || [ -z $2 ]; then
+        printf "Usage:\n\t $0 sID port e.g $0 S5 0\n"
+        exit 0
+fi
+
+sid=$1
+port=$2
+
+ver="1.00.18.301"
+t_macaddr="t_macaddr"
+wifi_inter="wlp3s0"
+espfile="$(pwd)/esp8266-20180511-v1.9.4.bin"
+# Modify the WiFi.cfg
+printf "$0 ver. ${ver}\n"
+
+# Get the Flash info and then parse  the mac address
+printf "[info] Get the ttyUSB${port} info\n"
+mac=$(esptool.py --port /dev/ttyUSB${port} flash_id | awk -F 'MAC:' '{print $2}' | tr -d " " | tr -d "\r\n" | tr '[:lower:]' '[:upper:]')
+printf "MAC address: ${mac}\n"
+printf "${sid}: ${mac}\n" | tee -a ${t_macaddr}
+
+# Erase the ESP01s
+printf "[info] Erase the ttyUSB{port}\n"
+esptool.py --port /dev/ttyUSB${port} erase_flash
+
+#  Flash micropython to ESP01s via  CP2102 USB to UART Bridge Controller
+printf "[info] Download the MicroPython image to ESP-01S\n"
+esptool.py --port /dev/ttyUSB${port} --baud 460800 write_flash --flash_size detect 0 ${espfile}
+
+printf "Finish to download the MicroPython Image\n"
+python3 set.py ${port}
+
+printf "[info] Upload the maint.py and user config to ttyUSB${port}\n"
+ampy -p /dev/ttyUSB${port} -b 115200 put wifi.cfg
+ampy -p /dev/ttyUSB${port} -b 115200 put main.py
+printf "Done\n"
